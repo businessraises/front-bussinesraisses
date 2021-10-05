@@ -1,31 +1,24 @@
-import React from "react";
-
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import React, { useContext } from "react";
+import { UserContext } from '../../context/UserContext'
 
 const FormularioR = () => {
 
-    const registrar = () => {
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            // ...
-            console.log(user);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
+    const { user, setUser, registrar } = useContext(UserContext);
+
+    const onChange = ( event ) => {
+        const key = event.target.name;
+        const value = event.target.value;
+        setUser({
+            ...user,
+            [key]: value,
         });
     }
-
 
     return (
         <div class="card container">
             <div class="card-body">
                 <h4 class="card-title">BUSINESS RAISES</h4>
-                <form onSubmit="#">
+                <form onSubmit={ (event) => registrar(event, user) }>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">
                             Correo electronico
@@ -34,7 +27,10 @@ const FormularioR = () => {
                             type="email"
                             class="form-control"
                             id="email"
+                            name="email"
                             placeholder="example@example.com"
+                            value = { user.email }
+                            onChange = { onChange }
                         />
                     </div>
                     <div class="mb-3">
@@ -45,7 +41,10 @@ const FormularioR = () => {
                             type="password"
                             class="form-control"
                             id="password"
+                            name="password"
                             placeholder="***********"
+                            value = { user.password }
+                            onChange = { onChange }
                         />
                     </div>
                     <button type="submit" class="btn btn-primary">

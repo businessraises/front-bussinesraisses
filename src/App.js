@@ -1,27 +1,13 @@
 import "./app.css";
 
-import Login from './components/Login Page/FormularioL';
-import Register from './components/Register Page/FormularioR';
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
+import { UserProvider, UserConsumer, UserContext } from './context/UserContext'
+import Routes from "./Routes";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-
-        <Switch>
-          <Route exact path="/" component={ Register } />
-        </Switch>
-
-      </div>
-    </Router>
+    <UserProvider>
+      <Routes />
+    </UserProvider>
   );
 }
 
