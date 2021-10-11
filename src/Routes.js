@@ -10,16 +10,23 @@ import {
     Link
 } from "react-router-dom";
 
+import Welcome from './pages/welcome'
+import Home from './pages/home'
+
 const Routes = () => {
     return (
         <Router>
             <div className="App">
                 
                 <Switch>
-                    <Route exact path="/" component={Login} />
+                    <Route exact path="/" component={Welcome} />
                     <Route exact path="/register" component={Register} />
-                </Switch>
 
+                    {/*    New Routes */}
+                    <Route exact path="/welcome" component={Welcome} />
+                    <Route exact path="/home" component={Home} />
+
+                </Switch>
             </div>
         </Router>
     )

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from '../../context/UserContext'
-
+import {Grid} from '@mui/material'
 const FormularioR = () => {
 
     const { user, setUser, registrar } = useContext(UserContext);
@@ -17,7 +17,7 @@ const FormularioR = () => {
 
 
     return (
-        <>
+        <Grid container>
             <div className="titulo">
                 <h1 className="marca">BUSINESS RAISESS </h1>
             </div>
@@ -76,7 +76,7 @@ const FormularioR = () => {
                     </form>
                 </div>
             </div>
-        </>
+        </Grid>
     );
 };
 
