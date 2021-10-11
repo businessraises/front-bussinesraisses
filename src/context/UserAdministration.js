@@ -13,7 +13,7 @@ const autenticar = (event, state, setState) => {
       console.log(user);
       setState({
         ...state,
-        "uid": user.uid
+        "userObj": user
       })
     })
     .catch((error) => {

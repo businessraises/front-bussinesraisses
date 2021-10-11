@@ -9,7 +9,7 @@ const UserProvider = ({ children }) => {
     const [user, setUser] = useState({
         email: "",
         password: "",
-        uid: ""
+        userObj: ""
     })
 
     return (
