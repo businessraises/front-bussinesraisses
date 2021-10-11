@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from '../../context/UserContext'
-
+import draw from '../../static/1_login.svg';
 
 const FormularioL = () => {
 
@@ -17,9 +18,17 @@ const FormularioL = () => {
 
   return (
     <>
-      <div class="card container">
-        <div class="card-body">
-          <h4 class="card-title">BUSINESS RAISES</h4>
+      <div className="titulo">
+        <h1 className="marca">BUSINESS RAISESS </h1>
+      </div>
+      <div class="card container" style={{'max-width' : '80vh', 'text-align' : 'justify'}}>
+        <div class="card-body p-4">
+
+          <p align="center" >
+            <small className="message-error"></small>
+          </p>
+
+          {/* <h4 class="card-title p-4 fs-5" align="center">BIENVENIDOS</h4> */}
           <form onSubmit={(event) => autenticar(event, user, setUser)}>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">
@@ -49,9 +58,14 @@ const FormularioL = () => {
                 onChange={onChange}
               />
             </div>
-            <button type="submit" class="btn btn-primary">
-              Iniciar
-            </button>
+            <p><small> Recuerda, no debes compartir tu usuario o contraseña, con nadie. </small></p>
+            
+            <div align="center" className="mt-2">
+              <button type="submit" className="btn btn-primary m-2">
+                Iniciar Sesión
+              </button>
+              <Link to="/register" className="btn btn-outline-primary m-2">Registrar</Link>
+            </div>
           </form>
         </div>
       </div>
