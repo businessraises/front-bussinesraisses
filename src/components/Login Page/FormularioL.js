@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { UserContext } from '../../context/UserContext'
 import draw from '../../static/1_login.svg';
 
-const FormularioL = () => {
+const FormularioL = ( props ) => {
 
-  const { user, setUser, autenticar } = useContext(UserContext);
+  const { user, setUser, autenticar, messageError } = useContext(UserContext);
 
   const onChange = (event) => {
     const key = event.target.name;
@@ -16,27 +16,40 @@ const FormularioL = () => {
     });
   }
 
+  const handleSubmit = async ( event ) => {
+    event.preventDefault();
+
+    const sesion = await autenticar(  user, setUser );
+    
+    if( sesion.state ) {
+      props.history.push('/home')
+    }
+    else {
+      messageError('Usuario o Contraseña, incorrecta');
+    }
+  }
+
   return (
     <>
       <div className="titulo">
         <h1 className="marca">BUSINESS RAISESS </h1>
       </div>
-      <div class="card container" style={{'max-width' : '80vh', 'text-align' : 'justify'}}>
-        <div class="card-body p-4">
+      <div className="card container" style={{maxWidth : '80vh', textAlign : 'justify'}}>
+        <div className="card-body p-4">
 
           <p align="center" >
             <small className="message-error"></small>
           </p>
 
-          {/* <h4 class="card-title p-4 fs-5" align="center">BIENVENIDOS</h4> */}
-          <form onSubmit={(event) => autenticar(event, user, setUser)}>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">
+          {/* <h4 className="card-title p-4 fs-5" align="center">BIENVENIDOS</h4> */}
+          <form onSubmit={ handleSubmit }>
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
                 Correo electronico
               </label>
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="email"
                 name="email"
                 placeholder="example@example.com"
@@ -44,13 +57,13 @@ const FormularioL = () => {
                 onChange={onChange}
               />
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">
+            <div className="mb-3">
+              <label htmlFor="exampleInputPassword1" className="form-label">
                 Contraseña
               </label>
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="password"
                 name="password"
                 placeholder="***********"
