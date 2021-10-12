@@ -79,7 +79,7 @@ const Signup = () => {
     <Box sx={{ height: "100%", display: "block" }}>
       <Grid container>
         <Grid item xs={12}>
-          <Navbar from="login" />
+          <Navbar from="signup" />
         </Grid>
         <Grid
           item
@@ -103,14 +103,13 @@ const Signup = () => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  
                 }}
               >
                 <Avatar sx={{ m: 2, bgcolor: "success.main"}}>
                   <PersonIcon fontSize="large"/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                  Login
+                  Registro
                 </Typography>
                 <Box
                   component="form"
@@ -144,12 +143,13 @@ const Signup = () => {
                       />
                     </Grid>
                   </Grid>
+
                 <Button
                     type="submit"
                     fullWidth
                     variant="contained"
                     href="/login" 
-                    sx={{ mt: 3, mb: 1 , backgroundColor: '#17c3b2', '&:hover' : {
+                    sx={{ mt: 3, mb: 2 , backgroundColor: '#17c3b2', '&:hover' : {
                       backgroundColor: '#21b5a4',
                   }}}
                   >

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Login from './components/Login Page/FormularioL';
-import Register from './components/Register Page/FormularioR';
+import Login from './components/forms/login';
+import SignUp from './components/forms/Signup';
 
 import {
     BrowserRouter as Router,
@@ -16,18 +16,15 @@ import Home from './pages/home'
 const Routes = () => {
     return (
         <Router>
-            <div className="App">
-                
                 <Switch>
                     <Route exact path="/" component={Welcome} />
-                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/signup" component={SignUp} />
 
                     {/*    New Routes */}
-                    <Route exact path="/welcome" component={Welcome} />
+                    <Route exact path="/login" component={Login} />
                     <Route exact path="/home" component={Home} />
 
                 </Switch>
-            </div>
         </Router>
     )
 }

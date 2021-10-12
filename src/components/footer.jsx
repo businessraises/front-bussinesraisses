@@ -45,7 +45,7 @@ const styleCustomeButton = {
     }
 }
 
-const Navbar = (props) => {
+const Footer = () => {
 
 
     const clasess = useStyle()
@@ -63,7 +63,7 @@ const Navbar = (props) => {
                             backgroundColor: 'inherit',
                         }
                     }}
-                    href="/" 
+                    href="#contained-buttons" 
                     edge="start"
                     disableElevation
                     disableFocusRipple={true}
@@ -72,44 +72,30 @@ const Navbar = (props) => {
                 >
                         Bussines Raisses
                 </Button>
-                {/* <Button 
+                </Typography>
+
+                <Button 
                     sx={{
                         ...styleCustomeButton,
                     }}
                     variant="contained" 
                     href="#contained-buttons" 
-                    edge="start"
-                    disableElevation
-                    >¿ Quienes somos ?
-                </Button> */}
-                </Typography>
-                { props.from!=='login' &&
-                <Button 
-                    sx={{
-                        ...styleCustomeButton,
-                    }}
-                    variant="contained" 
-                    href="/login" 
                     edge="end"
                     disableElevation
                 >
                     Iniciar sesion
                 </Button>
-                }
-                { props.from!=='signup'&&
                 <Button 
                     sx={{
                         ...styleCustomeButton,
                     }}
                     variant="contained" 
-                    href="/signup" 
+                    href="#contained-buttons" 
                     edge="end"
                     disableElevation
                 >
-                    Registrarse
+                    Registrase
                 </Button>
-    }
-
             </Toolbar>
         </AppBar>
 
@@ -117,4 +103,4 @@ const Navbar = (props) => {
     )
 }
 
-export default Navbar
+export default Footer
