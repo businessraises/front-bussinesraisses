@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from '../../context/UserContext'
+import { Redirect } from "react-router-dom";
 
-const FormularioR = () => {
+const FormularioR = ( props ) => {
 
-    const { user, setUser, registrar } = useContext(UserContext);
+    const { user, setUser, registrar, messageError } = useContext(UserContext);
 
     const onChange = ( event ) => {
         const key = event.target.name;
@@ -15,28 +16,48 @@ const FormularioR = () => {
         });
     }
 
+    const handleSubmit = async ( event ) => {
+        event.preventDefault()
+        const psw = document.getElementsByName('passwordTemp')[0].value;
+        
+        if( psw === user.password ) {
+            const sesion = await registrar( user, setUser );
+
+            if( sesion.state ) {
+                /* Redirect  */
+                props.history.push('/home')
+            }
+            else {
+                // messageError(sesion.data.message.split(': ')[1])
+                messageError('Ha ocurrido un error, vuelva a intentar.')
+            }
+        }
+        else {
+            messageError('Verificar contraseña, deben ser iguales');
+        }
+    }
 
     return (
         <>
             <div className="titulo">
                 <h1 className="marca">BUSINESS RAISESS </h1>
             </div>
-            <div class="card container" style={{'max-width' : '80vh', 'text-align' : 'justify'}}>
-                <div class="card-body">
+            <div className="card container" style={{maxWidth : '80vh', textAlign : 'justify'}}>
+                <div className="card-body">
 
                 <p align="center" >
                     <small className="message-error"></small>
                 </p>
 
-                    <Link to="/" className="btn btn-outline-dark btn-sm mb-2"> <i class="bi bi-arrow-left"></i> Volver </Link>
-                    <form onSubmit={ (event) => registrar(event, user) }>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">
+                    <Link to="/" className="btn btn-outline-dark btn-sm mb-2"> <i className="bi bi-arrow-left"></i> Volver </Link>
+                    <form onSubmit={ handleSubmit }>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputEmail1" className="form-label">
                                 Correo electronico
                             </label>
                             <input
                                 type="email"
-                                class="form-control"
+                                className="form-control"
                                 id="email"
                                 name="email"
                                 placeholder="example@example.com"
@@ -44,32 +65,32 @@ const FormularioR = () => {
                                 onChange = { onChange }
                             />
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputPassword1" className="form-label">
                                 Contraseña
                             </label>
                             <input
                                 type="password"
-                                class="form-control mb-3"
+                                className="form-control mb-3"
                                 id="password"
                                 name="password"
                                 placeholder="***********"
                                 value = { user.password }
                                 onChange = { onChange }
                             />
-                            <label for="exampleInputPassword1" class="form-label">
+                            <label htmlFor="exampleInputPassword1" className="form-label">
                                 Repetir contraseña
                             </label>
                             <input
                                 type="password"
-                                class="form-control"
+                                className="form-control"
                                 id="passwordTemp"
                                 name="passwordTemp"
                                 placeholder="***********"
                             />
                         </div>
                         <div align="center">
-                            <button type="submit" class="btn btn-primary w-100">
+                            <button type="submit" className="btn btn-primary w-100">
                                 Crear cuenta
                             </button>
                         </div>

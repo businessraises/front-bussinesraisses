@@ -1,58 +1,75 @@
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { app } from '../firebase/config'
 
-const autenticar = (event, state, setState) => {
-  event.preventDefault();
+const autenticar = ( state, setState ) => {
 
   const auth = getAuth(app);
-  signInWithEmailAndPassword(auth, state.email, state.password)
+  const sesionUser = signInWithEmailAndPassword(auth, state.email, state.password)
     .then((userCredential) => {
-      // Signed in
+
       const user = userCredential.user;
-      // ...
-      console.log(user);
+
       setState({
         ...state,
-        "uid": user.uid
+        "sesion": user
       })
+
+      return {
+        data: user,
+        type: 'auth',
+        state: true
+      }
     })
     .catch((error) => {
-      messageError( 'Usuario o Contraseña, incorrecta' );
+      
+      return {
+        data: error,
+        type: 'auth',
+        state: false
+      }
     });
+
+  return sesionUser
 }
 
-const registrar = (event, state) => {
-  event.preventDefault();
+const registrar = ( state, setState ) => {
 
-  const psw = document.getElementsByName('passwordTemp')[0].value;
+  const auth = getAuth(app);
+  const sesionUser = createUserWithEmailAndPassword(auth, state.email, state.password)
+    .then((userCredential) => {
 
-  if (state.password === psw) {
-    const auth = getAuth(app);
-    createUserWithEmailAndPassword(auth, state.email, state.password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-        console.log(user);
+      const user = userCredential.user;
+
+      setState({
+        ...state,
+        "sesion": user
       })
-      .catch((error) => {
-        const errorMessage = error.message;
 
-        messageError( errorMessage.split(': ')[1] )
+      return ({
+        data: user,
+        type: 'create',
+        state: true
+      })
 
-      });
-  } else {
-    messageError( 'Verificar contraseña, deben ser iguales' );
-  }
+    })
+    .catch((error) => {
 
+      return ({
+        data: error,
+        type: 'create',
+        state: false
+      })
 
+    });
+
+  return sesionUser;
 }
 
-const messageError = (message) => {
-  document.querySelector('.message-error').innerHTML = message;
-
-  setTimeout(() => {
-    document.querySelector('.message-error').innerHTML = '';
-  }, 3000);
+const salir = ( setState ) => {
+  setState({
+    email: "",
+    password: "",
+  });
 }
-export { autenticar, registrar }
+
+export { autenticar, registrar, salir }
