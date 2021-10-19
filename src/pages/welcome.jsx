@@ -13,7 +13,9 @@ const Welcome = () => {
   return (
     <>
       <Navbar />
-      <Container className="container" fluid="md">
+      <Container className="container" fluid="md"
+        style={{}}
+      >
         <Row>
           <Col style={{ height: "90vh" }}>
             <img
@@ -21,26 +23,13 @@ const Welcome = () => {
               src="https://www.utel.edu.mx/blog/wp-content/uploads/2013/10/shutterstock_144792676.jpg"
               style={{ width: "100vw", objectFit: "cover"}}
             />
+            <p></p>
           </Col>
         </Row>
       </Container>
     </>
   );
-  // return (
-  //    <div sx={{ flexGrow: 1 }}>
-  //        <Grid container sx={{ height: '100vh' }} >
-  //            <Grid item xs={12}>
-  //             <Navbar />
-  //            </Grid>
-  //                 <Grid item
-  //                     xs={12}
-  //                     sx={{backgroundImage: 'url(https://www.utel.edu.mx/blog/wp-content/uploads/2013/10/shutterstock_144792676.jpg) cover'}}
-  //                 >
 
-  //                  </Grid>
-  //        </Grid>
-  //    </div>
-  // )
 };
 
 export default Welcome;
