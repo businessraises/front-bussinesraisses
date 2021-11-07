@@ -54,7 +54,8 @@ const styleCustomeSingUpCard = {
 
 const styleCustomeForm = {};
 
-const Signup = () => {
+const Signup = ( props ) => {
+
   const { user, setUser, registrar } = useContext(UserContext);
 
   const onChange = (event) => {
@@ -66,13 +67,19 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    console.log(user)
+    const sesion = await registrar( user, setUser );
+
+      if( sesion.state ) {
+          /* Redirect  */
+          props.history.push('/home')
+      }
+      else {
+          // messageError(sesion.data.message.split(': ')[1])
+          console.log('Ha ocurrido un error, vuelva a intentar.')
+      } 
   };
 
   return (
@@ -128,6 +135,7 @@ const Signup = () => {
                         color="success"
                         name="email"
                         autoComplete="email"
+                        onChange = { onChange }
                       />
                     </Grid>
                     <Grid item xs={12} mb={3}>
@@ -139,6 +147,7 @@ const Signup = () => {
                         label="Contraseña"
                         type="password"
                         id="password"
+                        onChange = { onChange }
                         autoComplete="new-password"
                       />
                     </Grid>
@@ -148,12 +157,11 @@ const Signup = () => {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    href="/login" 
                     sx={{ mt: 3, mb: 2 , backgroundColor: '#17c3b2', '&:hover' : {
                       backgroundColor: '#21b5a4',
                   }}}
                   >
-                    Iniciar sesion
+                    Registrarme
                   </Button>
                 </Box>
               </Box>
