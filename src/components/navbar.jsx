@@ -2,7 +2,7 @@ import React from "react";
 
 import {Button, Box, IconButton, Grid, AppBar, Toolbar, Typography} from "@mui/material"
 import {makeStyles} from '@mui/styles'
-
+import LogoutIcon from '@mui/icons-material/Logout';
 const useStyle = makeStyles({
     root:{
         flexGrow: 1
@@ -83,7 +83,7 @@ const Navbar = (props) => {
                     >¿ Quienes somos ?
                 </Button> */}
                 </Typography>
-                { props.from!=='login' &&
+                { (props.from == 'signup' || props.from == 'welcome') &&
                 <Button 
                     sx={{
                         ...styleCustomeButton,
@@ -96,7 +96,7 @@ const Navbar = (props) => {
                     Iniciar sesion
                 </Button>
                 }
-                { props.from!=='signup'&&
+                { (props.from == 'login' || props.from == 'welcome') &&
                 <Button 
                     sx={{
                         ...styleCustomeButton,
@@ -108,7 +108,25 @@ const Navbar = (props) => {
                 >
                     Registrarse
                 </Button>
-    }
+                }
+                { props.from == 'home' &&
+                    <Button 
+                        sx={{
+                            ...styleCustomeButton,
+                            '&:hover' : { 
+                                backgroundColor: "#c9184a"
+                            }
+                        }}
+                        variant="contained" 
+                        href="/" 
+                        edge="end"
+                        endIcon={<LogoutIcon />}
+                        disableElevation
+                        >
+                            Salir
+                        </Button>
+                }
+        
 
             </Toolbar>
         </AppBar>

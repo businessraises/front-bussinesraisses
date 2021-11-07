@@ -12,7 +12,7 @@ import Login from "../components/forms/login";
 const Welcome = () => {
   return (
     <>
-      <Navbar />
+      <Navbar from="welcome" />
       <Container className="container" fluid="md"
         style={{}}
       >

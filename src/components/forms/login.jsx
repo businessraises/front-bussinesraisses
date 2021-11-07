@@ -54,8 +54,8 @@ const styleCustomeSingUpCard = {
 
 const styleCustomeForm = {};
 
-const Signup = () => {
-  const { user, setUser, registrar } = useContext(UserContext);
+const Signup = (props) => {
+  const { user, setUser, autenticar, messageError } = useContext(UserContext);
 
   const onChange = (event) => {
     const key = event.target.name;
@@ -66,13 +66,19 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    event.preventDefault();
+    console.log(user)
+    const sesion = await autenticar(  user, setUser );
+    
+    if( sesion.state ) {
+      props.history.push('/home')
+    }
+    else {
+      console.log('Usuario o Contraseña, incorrecta');
+    }
   };
 
   return (
@@ -128,6 +134,7 @@ const Signup = () => {
                         label="Email"
                         color="success"
                         name="email"
+                        onChange={onChange}
                         autoComplete="email"
                       />
                     </Grid>
@@ -140,6 +147,7 @@ const Signup = () => {
                         label="Contraseña"
                         type="password"
                         id="password"
+                        onChange={onChange}
                         autoComplete="new-password"
                       />
                     </Grid>
@@ -148,7 +156,6 @@ const Signup = () => {
                     type="submit"
                     fullWidth
                     variant="contained"
-                    href="/login" 
                     sx={{ mt: 3, mb: 1 , backgroundColor: '#17c3b2', '&:hover' : {
                       backgroundColor: '#21b5a4',
                   }}}
