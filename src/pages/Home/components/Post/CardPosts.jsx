@@ -3,7 +3,7 @@ import './cardPost.css'
 
 const CardPosts = () => {
   return (
-    <div className='card shadow-sm p-0'>
+    <div className='card shadow-sm p-0  '>
       <div className='row g-0'>
         <div className='col-md-4 w-25'>
           <img

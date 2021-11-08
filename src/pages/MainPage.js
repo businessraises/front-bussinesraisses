@@ -11,10 +11,10 @@ const MainPage = () => {
   const { user, setUser } = useContext(UserContext)
 
   useEffect(() => {
-    const handleUserData = async () => {  
+    const handleUserData = async () => {
       const { uid } = await getUser()
       const data = await getUserUid(uid)
-  
+
       setUser({
         ...data,
       })
@@ -23,14 +23,10 @@ const MainPage = () => {
     handleUserData()
   }, [setUser])
 
-
   return (
     <>
       <Navigation name={user.name} />
       <Outlet />
-
-      {/* Footer */}
-      {/* <Footer /> */}
     </>
   )
 }

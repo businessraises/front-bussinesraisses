@@ -1,5 +1,5 @@
 import React from 'react'
-import CardPosts from './components/Post/CardPosts'
+import CardPosts from './components/Post/Card'
 import CardUser from './components/User/CardUser'
 import HeaderPosts from './components/Header/HeaderPosts'
 import AddPost from './components/AddPost/AddPost'
@@ -15,12 +15,12 @@ const Home = () => {
           <div className='row ms-0'>
             <HeaderPosts />
           </div>
-          <div className='row p-4'>
-            <div className='row mb-3 mx-auto'>
-              <CardPosts />
+          <div className='row p-4 ms-auto'>
+            <div className='col-3 mb-3'>
+              <CardPosts url='https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen.jpg' />
             </div>
-            <div className='row mb-3 mx-auto'>
-              <CardPosts />
+            <div className='col-3 mb-3'>
+              <CardPosts url='https://image.freepik.com/vector-gratis/logo-barberia-calavera_43623-577.jpg' />
             </div>
           </div>
         </div>
