@@ -18,7 +18,7 @@ const Home = () => {
           <CardUser />
         </div>
         <div className='col-9'>
-          <div className='row px-4 py-2 ms-auto m-5'>
+          <div className='row px-4 py-2 ms-auto'>
             {posts.length > 0?
               posts.map((post) => {
                 return (

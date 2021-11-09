@@ -6,7 +6,7 @@ const CardUser = ({ style }) => {
   const { user } = useContext(UserContext)
 
   return (
-    <div className='card shadow-sm mt-5 w-25' style={{ position: 'fixed'   }}>
+    <div className='card shadow-sm w-25' style={{ position: 'fixed'   }}>
       <div className='card-body'>
         <div className='card-title text-center'>
           <span style={{ fontSize: '15vh' }}>

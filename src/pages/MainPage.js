@@ -38,7 +38,9 @@ const MainPage = () => {
   return (
     <>
       <Navigation name={user.name} />
-      <Outlet />
+      <div className='pt-5'>
+        <Outlet />
+      </div>
     </>
   )
 }
