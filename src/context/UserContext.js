@@ -8,7 +8,8 @@ const { Provider, Consumer } = UserContext
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState({})
-
+  const [posts, setPosts] = useState([])
+  
   return (
     <Provider
       value={{
@@ -18,6 +19,8 @@ const UserProvider = ({ children }) => {
         signUp,
         signOut,
         messageError,
+        posts,
+        setPosts,
       }}
     >
       {children}

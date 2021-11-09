@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const FormPost = () => {
-  const [form, setForm] = useState({})
-
-  const handleChange = (event) => {
+const FormPost = ({ form, setForm, hours, setHours, handleToPost }) => {
+  const handleForm = (event) => {
     const { name, value } = event.target
     setForm({
       ...form,
@@ -11,9 +9,19 @@ const FormPost = () => {
     })
   }
 
+  const handleHours = async (event) => {
+    /* hourInitial, hourFinal, stateHourInitial, stateHourFinal */
+    const { name, value } = event.target
+
+    setHours({
+      ...hours,
+      [name]: value,
+    })
+  }
+
   return (
     <>
-      <form id='formPost'>
+      <form id='formPost' onSubmit={handleToPost}>
         <div className='row'>
           <div className='col-7 mb-3 '>
             <label htmlFor='InputTitle' className='form-label'>
@@ -24,7 +32,7 @@ const FormPost = () => {
               className='form-control'
               id='InputTitle'
               name='title'
-              onChange={handleChange}
+              onChange={handleForm}
               required
             />
           </div>
@@ -36,7 +44,7 @@ const FormPost = () => {
               className='form-select'
               id='SelectType'
               name='type'
-              onChange={handleChange}
+              onChange={handleForm}
               required
             >
               <option defaultValue hidden>
@@ -57,7 +65,7 @@ const FormPost = () => {
               className='form-control'
               id='InputTelephone1'
               name='primaryTelephone'
-              onChange={handleChange}
+              onChange={handleForm}
               required
             />
           </div>
@@ -70,7 +78,7 @@ const FormPost = () => {
               className='form-control'
               id='InputTelephone2'
               name='secondaryTelephone'
-              onChange={handleChange}
+              onChange={handleForm}
             />
           </div>
 
@@ -83,7 +91,7 @@ const FormPost = () => {
               className='form-control'
               id='InputEmail1'
               name='secondaryEmail'
-              onChange={handleChange}
+              onChange={handleForm}
             />
           </div>
           <div className='col-5 mb-3 '>
@@ -95,7 +103,7 @@ const FormPost = () => {
               className='form-control'
               id='InputAddress'
               name='direction'
-              onChange={handleChange}
+              onChange={handleForm}
               required
             />
           </div>
@@ -108,11 +116,14 @@ const FormPost = () => {
                 <input
                   type='number'
                   className='form-control'
+                  name='hourInitial'
                   id='InputHourA'
+                  onChange={handleHours}
                 />
               </div>
               <div className='col'>
-                <select className='form-select'>
+                <select className='form-select' name='stateHourInitial' onChange={handleHours}>
+                  <option defaultValue hidden>  </option>
                   <option value='AM'>AM</option>
                   <option value='PM'>PM</option>
                 </select>
@@ -128,11 +139,14 @@ const FormPost = () => {
                 <input
                   type='number'
                   className='form-control'
+                  name='hourFinal'
                   id='InputHourC'
+                  onChange={handleHours}
                 />
               </div>
               <div className='col'>
-                <select className='form-select'>
+                <select className='form-select' name='stateHourFinal' onChange={handleHours}>
+                  <option defaultValue hidden></option>
                   <option value='AM'>AM</option>
                   <option value='PM'>PM</option>
                 </select>
@@ -148,12 +162,12 @@ const FormPost = () => {
               className='form-control'
               id='InputDrescription'
               name='description'
-              onChange={handleChange}
+              onChange={handleForm}
               required
             />
           </div>
         </div>
-        <button type='submit' className='btn btn-outline-dark w-100'>
+        <button type='submit' className='btn btn-outline-dark w-100' data-bs-dismiss="modal">
           Guardar Cambios
         </button>
       </form>

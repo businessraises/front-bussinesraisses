@@ -1,7 +1,37 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { UserContext } from '../../../../context/UserContext'
+import { savePost } from '../../../../static/js/postController'
+import { getUser } from '../../../../static/js/userController'
 import FormPost from './FormPost'
 
 const AddPost = () => {
+  const { user, posts, setPosts } = useContext(UserContext)
+  const [form, setForm] = useState({})
+  const [hours, setHours] = useState({})
+
+  const handleToPost = async (event) => {
+    event.preventDefault()
+    const { uid } = await getUser()
+    const data = {
+      ...form,
+      businessHours: `${hours.hourInitial}${hours.stateHourInitial} - ${hours.hourFinal}${hours.stateHourFinal}`,
+      user: {
+        email: user.email,
+        id: user.id,
+        name: user.name,
+        uid
+      },
+      images: []
+    }
+
+    const response = await savePost(data)
+    setPosts([
+      ...posts,
+      response
+    ])
+    
+  }
+
   return (
     <>
       <div
@@ -13,13 +43,17 @@ const AddPost = () => {
       >
         <div className='modal-dialog'>
           <div className='modal-content'>
-            <div className='modal-header bg-dark w-100 m-0'>
-              <h5 className='modal-title text-light' id='exampleModalLabel'>
+            <div className='modal-body'>
+              <h5 className='modal-title mb-2' id='exampleModalLabel'>
                 Crear una nueva oferta
               </h5>
-            </div>
-            <div className='modal-body'>
-              <FormPost />
+              <FormPost
+                form={form}
+                setForm={setForm}
+                hours={hours}
+                setHours={setHours}
+                handleToPost={handleToPost}
+              />
             </div>
           </div>
         </div>

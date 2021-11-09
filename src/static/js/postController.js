@@ -7,7 +7,7 @@ const getToken = async () => cookies.get('accessToken')
 const getPosts = async () => {
   try {
     const accessToken = await getToken()
-    const { data } = axios.get('/post', {
+    const { data } = await axios.get('/post', {
       baseURL: 'https://spring-business-raises.herokuapp.com',
       method: 'GET',
       headers: {
@@ -27,7 +27,7 @@ const getPosts = async () => {
 const savePost = async (object) => {
   try {
     const accessToken = await getToken()
-    const { data } = axios.post('/post', object, {
+    const { data } = await axios.post('/post', object, {
       baseURL: 'https://spring-business-raises.herokuapp.com',
       method: 'POST',
       headers: {
@@ -47,7 +47,7 @@ const savePost = async (object) => {
 const deletePost = async (id) => {
   try {
     const accessToken = await getToken()
-    const { data } = axios.delete(`/post/${id}`, {
+    const { data } = await axios.delete(`/post/${id}`, {
       baseURL: 'https://spring-business-raises.herokuapp.com',
       method: 'DELETE',
       headers: {
@@ -67,7 +67,7 @@ const deletePost = async (id) => {
 const getPostUserId = async (id) => {
   try {
     const accessToken = await getToken()
-    const { data } = axios.get(`/post/${id}`, {
+    const { data } = await axios.get(`/post/${id}`, {
       baseURL: 'https://spring-business-raises.herokuapp.com',
       method: 'GET',
       headers: {

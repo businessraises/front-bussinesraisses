@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 import { UserContext } from '../context/UserContext'
 
-const Navigation = ( {name} ) => {
+const Navigation = ({ name }) => {
   const { setUser, signOut } = useContext(UserContext)
 
   const handleLogout = () => {
@@ -11,7 +11,10 @@ const Navigation = ( {name} ) => {
   }
 
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-light shadow-sm'>
+    <nav
+      className='navbar navbar-expand-lg navbar-light bg-light shadow-sm'
+      style={{ position: 'fixed', width: '100vw', zIndex: '10' }}
+    >
       <div className='container-fluid'>
         <button
           className='navbar-toggler'
@@ -59,10 +62,7 @@ const Navigation = ( {name} ) => {
               >
                 {name || '(Completar datos)'}
               </Link>
-              <ul
-                className='dropdown-menu shadow'
-                aria-labelledby='navItemUser'
-              >
+              <ul className='dropdown-menu shadow' aria-labelledby='navItemUser'>
                 {/* <li><Link className="dropdown-item" to="#">Perfil</Link></li> */}
                 <li>
                   <Link className='dropdown-item' to='/configuracion/perfil'>
@@ -73,11 +73,7 @@ const Navigation = ( {name} ) => {
                   <hr className='dropdown-divider' />
                 </li>
                 <li>
-                  <Link
-                    className='dropdown-item'
-                    to='/login'
-                    onClick={handleLogout}
-                  >
+                  <Link className='dropdown-item' to='/login' onClick={handleLogout}>
                     Cerrar Sesion
                   </Link>
                 </li>

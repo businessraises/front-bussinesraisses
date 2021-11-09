@@ -1,0 +1,7 @@
+React Masonry Layout
+
+----------------------------
+
+- Crear una nueva publicación ( Con imagenes )
+- Cargar dinamicamente las publicación (  )
+- 

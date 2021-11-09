@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../../../context/UserContext'
+import HeaderPosts from '../Header/HeaderPosts'
 
 const CardUser = ({ style }) => {
   const { user } = useContext(UserContext)
 
   return (
-    <div className='card w-100 shadow-sm'>
+    <div className='card shadow-sm mt-5 w-25' style={{ position: 'fixed'   }}>
       <div className='card-body'>
         <div className='card-title text-center'>
           <span style={{ fontSize: '15vh' }}>
@@ -15,6 +16,7 @@ const CardUser = ({ style }) => {
             {user.name} {user.surname}
           </h5>
           <hr className='w-75 mx-auto' />
+          <HeaderPosts />
         </div>
         <div className='card-text'>
           <ul className='text-left'>

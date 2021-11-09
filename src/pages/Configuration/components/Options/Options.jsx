@@ -18,7 +18,7 @@ const Options = () => {
               </NavLink>
             </div>
             <div className='text-center mb-3'>
-              <NavLink className='btn btn-outline-dark w-100' to='/'>
+              <NavLink className='btn btn-outline-dark w-100' to='publicaciones'>
                 Gestion de publicaciones
               </NavLink>
             </div>

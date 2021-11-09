@@ -1,13 +1,13 @@
 import React from 'react'
 import './cardPost.css'
 
-const CardPosts = () => {
+const CardPosts = ({ title, description, user, url }) => {
   return (
     <div className='card shadow-sm p-0  '>
       <div className='row g-0'>
         <div className='col-md-4 w-25'>
           <img
-            src='https://image.freepik.com/vector-gratis/logo-barberia-calavera_43623-577.jpg'
+            src={url}
             className='img-fluid rounded-start'
             alt='...'
             style={{ minHeight: '100%' }}
@@ -15,18 +15,15 @@ const CardPosts = () => {
         </div>
         <div className='col-md-8'>
           <div className='card-body'>
-            <h5 className='card-title'>Barberia donde paco</h5>
+            <h5 className='card-title'>{title}</h5>
             <p className='card-text'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-              enim odio aut nesciunt quia, totam tenetur sunt deleniti cumque
-              impedit blanditiis assumenda est temporibus explicabo ad corrupti
-              doloribus sapiente amet!
+              {description}
             </p>
             <p className='card-text'>
-              <small className='text-muted'>Ofrece: Paco Villa</small>
-              <small className='text-muted ms-4'>
+              <small className='text-muted'>Ofrece: {user}</small>
+              {/* <small className='text-muted ms-4'>
                 Dirección: Carrera 20 Calle 16 #9-20
-              </small>
+              </small> */}
             </p>
           </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 /* ---- */
 import { BrowserRouter as Router, Routes as Switch, Route } from 'react-router-dom'
 /* ---- */
-// import MainPage from '../pages/MainPage'
+import MainPage from '../pages/MainPage'
 /* Pages */
 import Login from '../pages/Login/LoginPage'
 import Register from '../pages/Register/RegisterPage'
@@ -15,10 +15,8 @@ import AcercaPage from '../pages/About/AcercaPage'
 import Configuration from '../pages/Configuration/Configuration'
 import Profile from '../pages/Configuration/components/Profile/Profile'
 import Management from '../pages/Configuration/components/Management/Management'
+import ManagementPosts from '../pages/Configuration/components/Posts/ManagementPosts'
 
-const MainPage = React.lazy(
-  () => import('../pages/MainPage')
-)
 const Routes = () => {
   return (
     <Router>
@@ -36,6 +34,7 @@ const Routes = () => {
             <Route path='configuracion' element={<Configuration />}>
               <Route path='perfil' element={<Profile />} />
               <Route path='gestion' element={<Management />} />
+              <Route path='publicaciones' element={<ManagementPosts />} />
             </Route>
           </Route>
 
