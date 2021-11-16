@@ -3,7 +3,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth'
-import { app } from '../firebase/config'
+import { app } from './config'
 import Cookies from 'universal-cookie/es6'
 
 const cookies = new Cookies()
@@ -34,7 +34,7 @@ const signIn = async (state) => {
   }
 }
 
-const signUp = async (state, setState) => {
+const signUp = async (state) => {
   try {
     const auth = getAuth(app)
     const { user } = await createUserWithEmailAndPassword(
@@ -45,10 +45,6 @@ const signUp = async (state, setState) => {
     const token = await user.getIdToken()
 
     cookies.set('accessToken', token, { path: '/' })
-
-    setState({
-      accessToken: token,
-    })
 
     return {
       data: user,

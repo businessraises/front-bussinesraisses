@@ -1,41 +1,9 @@
-import React, { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { UserContext } from '../../context/UserContext'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import useLogin from '../../hooks/useLogin'
 
 const FormularioR = () => {
-  const navigate = useNavigate()
-  const { setUser, signUp, messageError } = useContext(UserContext)
-
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  })
-
-  const onChange = (event) => {
-    const key = event.target.name
-    const value = event.target.value
-    setForm({
-      ...form,
-      [key]: value,
-    })
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    const psw = document.getElementsByName('passwordTemp')[0].value
-
-    if (psw === form.password) {
-      const { state } = await signUp(form, setUser)
-
-      if (state) {
-        navigate('/')
-      } else {
-        messageError('Ha ocurrido un error, vuelva a intentar.', true)
-      }
-    } else {
-      messageError('Verificar contraseña, deben ser iguales', true)
-    }
-  }
+  const { form, onChange, handleSubmitRegister: handleSubmit } = useLogin()
 
   return (
     <div className='login'>

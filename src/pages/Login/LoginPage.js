@@ -1,36 +1,9 @@
-import React, { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { UserContext } from '../../context/UserContext'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import useLogin from '../../hooks/useLogin'
 
 const FormularioL = () => {
-  const navigate = useNavigate()
-  const { signIn, messageError } = useContext(UserContext)
-
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  })
-
-  const onChange = (event) => {
-    const key = event.target.name
-    const value = event.target.value
-    setForm({
-      ...form,
-      [key]: value,
-    })
-  }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-
-    const { state } = await signIn(form)
-
-    if (state) {
-      navigate('/')
-    } else {
-      messageError('Usuario o Contraseña, incorrecta', true)
-    }
-  }
+  const { form, onChange, handleSubmitLaunch: handleSubmit } = useLogin()  
 
   return (
     <div className='login'>
@@ -86,9 +59,7 @@ const FormularioL = () => {
                 </Link>
               </small>
               <br />
-              <small>
-                Recuerda, no debes compartir tu usuario o contraseña, con nadie.
-              </small>
+              <small>Recuerda, no debes compartir tu usuario o contraseña, con nadie.</small>
             </div>
             <div align='center' className='mt-2'>
               <button type='submit' className='btn btn-dark m-2'>

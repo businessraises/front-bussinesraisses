@@ -16,6 +16,8 @@ import Configuration from '../pages/Configuration/Configuration'
 import Profile from '../pages/Configuration/components/Profile/Profile'
 import Management from '../pages/Configuration/components/Management/Management'
 import ManagementPosts from '../pages/Configuration/components/Posts/ManagementPosts'
+import { UserContextProvider } from '../context/UserContext'
+import { PostContextProvider } from '../context/PostContext'
 
 const Routes = () => {
   return (
@@ -25,10 +27,16 @@ const Routes = () => {
           <Route path='/login' element={<PublicRoute component={Login} />} />
           <Route path='/register' element={<PublicRoute component={Register} />} />
           <Route path='/recover' element={<PublicRoute component={Recover} />} />
-
-          <Route path='/' element={
-              <ProtectedRoute component={MainPage} /> 
-          }>
+          <Route
+            path='/'
+            element={
+              <UserContextProvider>
+                <PostContextProvider>
+                  <ProtectedRoute component={MainPage} />
+                </PostContextProvider>
+              </UserContextProvider>
+            }
+          >
             <Route index element={<Home />} />
             <Route path='acerca' element={<AcercaPage />} />
             <Route path='configuracion' element={<Configuration />}>
@@ -37,7 +45,6 @@ const Routes = () => {
               <Route path='publicaciones' element={<ManagementPosts />} />
             </Route>
           </Route>
-
         </Switch>
       </div>
     </Router>

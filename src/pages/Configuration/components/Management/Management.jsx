@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { UserContext } from '../../../../context/UserContext'
-import { putUser } from '../../../../static/js/userController'
+import UserContext from '../../../../context/UserContext'
+import useManagement from '../../../../hooks/useManagement'
 const Management = () => {
-  const { user, setUser, messageError } = useContext(UserContext)
+  const { user } = useContext(UserContext)
+  const { handleUpdateUser } = useManagement()
+
   const [form, setForm] = useState({
     ...user
   })
@@ -15,17 +17,6 @@ const Management = () => {
       ...form,
       [key]: value,
     })
-  }
-
-  const handleUpdate = async () => {
-    setUser({
-      ...form
-    })
-    const response = await putUser(form)
-
-    response
-      ? messageError('Se han actualizado los datos correctamente.', false)
-      : messageError('Error, por favor, intentelo más tarde.', true)
   }
 
   return (
@@ -162,7 +153,7 @@ const Management = () => {
               type='button'
               className='btn btn-primary'
               name='updateUser'
-              onClick={handleUpdate}
+              onClick={ () => handleUpdateUser(form) }
             >
               Guardar
             </button>

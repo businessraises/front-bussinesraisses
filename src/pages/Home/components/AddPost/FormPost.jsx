@@ -1,6 +1,7 @@
 import React from 'react'
 
 const FormPost = ({ form, setForm, hours, setHours, handleToPost }) => {
+  
   const handleForm = (event) => {
     const { name, value } = event.target
     setForm({
@@ -48,7 +49,7 @@ const FormPost = ({ form, setForm, hours, setHours, handleToPost }) => {
               required
             >
               <option defaultValue hidden>
-                Tienda de
+                Tipo de negocio
               </option>
               <option value='Moda'>Moda</option>
               <option value='Tecnologia'>Tecnologia</option>
@@ -58,7 +59,7 @@ const FormPost = ({ form, setForm, hours, setHours, handleToPost }) => {
           </div>
           <div className='col-6 mb-3 '>
             <label htmlFor='InputTelephone1' className='form-label'>
-              Telefono #1
+              Telefono
             </label>
             <input
               type='number'
@@ -71,7 +72,7 @@ const FormPost = ({ form, setForm, hours, setHours, handleToPost }) => {
           </div>
           <div className='col-6 mb-3 '>
             <label htmlFor='InputTelephone2' className='form-label'>
-              Telefono #2
+              Telefono secundario
             </label>
             <input
               type='number'

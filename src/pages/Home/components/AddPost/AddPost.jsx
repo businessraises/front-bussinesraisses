@@ -1,17 +1,22 @@
 import React, { useContext, useState } from 'react'
-import { UserContext } from '../../../../context/UserContext'
+import PostContext from '../../../../context/PostContext'
+import UserContext from '../../../../context/UserContext'
 import { savePost } from '../../../../static/js/postController'
 import { getUser } from '../../../../static/js/userController'
 import FormPost from './FormPost'
 
 const AddPost = () => {
-  const { user, posts, setPosts } = useContext(UserContext)
   const [form, setForm] = useState({})
   const [hours, setHours] = useState({})
 
+  const { user } = useContext(UserContext)
+  const { posts, setPosts } = useContext(PostContext)
+
   const handleToPost = async (event) => {
     event.preventDefault()
+
     const { uid } = await getUser()
+
     const data = {
       ...form,
       businessHours: `${hours.hourInitial}${hours.stateHourInitial} - ${hours.hourFinal}${hours.stateHourFinal}`,
@@ -19,17 +24,13 @@ const AddPost = () => {
         email: user.email,
         id: user.id,
         name: user.name,
-        uid
+        uid,
       },
-      images: []
+      images: [],
     }
 
     const response = await savePost(data)
-    setPosts([
-      ...posts,
-      response
-    ])
-    
+    setPosts([...posts, response])
   }
 
   return (
@@ -41,7 +42,7 @@ const AddPost = () => {
         aria-labelledby='exampleModalLabel'
         aria-hidden='true'
       >
-        <div className='modal-dialog'>
+        <div className='modal-dialog modal-lg modal-dialog-centered'>
           <div className='modal-content'>
             <div className='modal-body'>
               <h5 className='modal-title mb-2' id='exampleModalLabel'>

@@ -1,14 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-import { UserContext } from '../context/UserContext'
+import useClosed from '../hooks/useClosed'
 
 const Navigation = ({ name }) => {
-  const { setUser, signOut } = useContext(UserContext)
-
-  const handleLogout = () => {
-    signOut(setUser)
-  }
+  const handleLogout = useClosed()
 
   return (
     <nav
