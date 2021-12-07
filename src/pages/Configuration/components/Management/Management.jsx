@@ -21,7 +21,7 @@ const Management = () => {
 
   return (
     <>
-      <div className='card shadow'>
+      <div className='card shadow-sm'>
       <div className='card-body'>
         <p align='center'>
           <small className='message-error'></small>

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ImageBlock from './ImageBlock'
 
 const FormPost = ({ form, setForm, hours, setHours, handleToPost }) => {
-  
+  const [images, setImages] = useState([{}, {}, {}])
+
   const handleForm = (event) => {
     const { name, value } = event.target
     setForm({
@@ -124,7 +126,9 @@ const FormPost = ({ form, setForm, hours, setHours, handleToPost }) => {
               </div>
               <div className='col'>
                 <select className='form-select' name='stateHourInitial' onChange={handleHours}>
-                  <option defaultValue hidden>  </option>
+                  <option defaultValue hidden>
+                    {' '}
+                  </option>
                   <option value='AM'>AM</option>
                   <option value='PM'>PM</option>
                 </select>
@@ -154,6 +158,18 @@ const FormPost = ({ form, setForm, hours, setHours, handleToPost }) => {
               </div>
             </div>
           </div>
+          {/* <div className='col-12 mb-3 container-fluid'>
+            <label htmlFor='sectionImages'>Agregar tres imagenes</label>
+            <div className='row text-center mx-auto' id='sectionImages'>
+              {images.map((image) => {
+                return (
+                  <div className='col'>
+                    <ImageBlock {...image} />
+                  </div>
+                )
+              })}
+            </div>
+          </div> */}
           <div className='col-12 mb-3 '>
             <label htmlFor='InputDrescription' className='form-label'>
               Descripción
@@ -168,7 +184,7 @@ const FormPost = ({ form, setForm, hours, setHours, handleToPost }) => {
             />
           </div>
         </div>
-        <button type='submit' className='btn btn-outline-dark w-100' data-bs-dismiss="modal">
+        <button type='submit' className='btn btn-outline-dark w-100' data-bs-dismiss='modal'>
           Guardar Cambios
         </button>
       </form>

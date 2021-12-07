@@ -84,4 +84,25 @@ const getPostUserId = async (id) => {
   }
 }
 
-export { getPosts, savePost, deletePost, getPostUserId }
+const postLike = async (id) => {
+  try {
+
+    const accessToken = await getToken()
+    const { data } = await axios.post(`/post/like/${id}`, null, {
+      baseURL: 'https://spring-business-raises.herokuapp.com',
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true,
+    })
+
+    return data
+  } catch (error) {
+    console.error(error.message)
+    return undefined
+  }
+}
+
+export { getPosts, savePost, deletePost, getPostUserId, postLike }

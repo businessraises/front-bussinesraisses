@@ -16,6 +16,7 @@ const ListPosts = () => {
               url={post.images.length > 0 ? post.images[0].url : notImage}
               title={post.title}
               description={post.description}
+              data={post}
             />
           </div>
         )

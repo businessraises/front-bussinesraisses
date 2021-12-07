@@ -18,6 +18,8 @@ import Management from '../pages/Configuration/components/Management/Management'
 import ManagementPosts from '../pages/Configuration/components/Posts/ManagementPosts'
 import { UserContextProvider } from '../context/UserContext'
 import { PostContextProvider } from '../context/PostContext'
+import MoreInfo from '../pages/Home/components/Post/MoreInfo'
+import ListPosts from '../pages/Home/components/Post/ListPosts'
 
 const Routes = () => {
   return (
@@ -37,7 +39,10 @@ const Routes = () => {
               </UserContextProvider>
             }
           >
-            <Route index element={<Home />} />
+            <Route path='/' element={<Home />}>
+              <Route index element={<ListPosts />} />
+              <Route path='/:id' element={<MoreInfo />} />
+            </Route>
             <Route path='acerca' element={<AcercaPage />} />
             <Route path='configuracion' element={<Configuration />}>
               <Route path='perfil' element={<Profile />} />

@@ -1,7 +1,7 @@
 import React from 'react'
 import CardUser from './components/User/CardUser'
 import AddPost from './components/AddPost/AddPost'
-import ListPosts from './components/Post/ListPosts'
+import { Outlet } from 'react-router'
 
 const Home = () => {
   
@@ -13,7 +13,7 @@ const Home = () => {
         </div>
         <div className='col-9'>
           <div className='row px-4 py-2 ms-auto'>
-            <ListPosts />
+            <Outlet />
           </div>
         </div>
       </div>
